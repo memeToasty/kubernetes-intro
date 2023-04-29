@@ -18,8 +18,10 @@ spec:
       containers:
       - name: frontend
         # The image of the application
+        # Use ghcr.io/memetoasty/kubernetes-intro/frontend:latest if you do not want to use a local image
         image: k8s-intro-frontend:latest
         # Only used so that minikube can get the image
+        # Remove if you want to use a remote image
         imagePullPolicy: Never
         ports:
         # The port that the container is exposing
@@ -33,9 +35,9 @@ spec:
         resources:
           # if container wants to consume more, it will be killed
           limits:
-            cpu: 500m
-            memory: 500m
+            cpu: "0.5"
+            memory: "500M"
           # gives the kube-scheduler information on which node to deploy the pod
           requests:
-            cpu: 500m
-            memory: 500m
+            cpu: "0.5"
+            memory: "500M"
