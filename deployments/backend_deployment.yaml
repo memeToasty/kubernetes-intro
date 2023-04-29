@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend
+spec:
+  # how many replicas of this application should run
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        # The image of the application
+        image: k8s-intro-backend:latest
+        # Only used so that minikube can get the image
+        imagePullPolicy: Never
+        ports:
+        # The port that the container is exposing
+        - containerPort: 3000
+        resources:
+          # if container wants to consume more, it will be killed
+          limits:
+            cpu: 500m
+            memory: 500m
+          # gives the kube-scheduler information on which node to deploy the pod
+          requests:
+            cpu: 500m
+            memory: 500m
