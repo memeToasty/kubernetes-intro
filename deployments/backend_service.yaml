@@ -13,4 +13,4 @@ spec:
       # Port that is exposed from the pods
       targetPort: 3000
   # This type defines how the pods are exposed
-  type: NodePort
+  type: ClusterIP
