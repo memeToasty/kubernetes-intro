@@ -123,6 +123,18 @@ Normally with a `LoadBalancer`-Service, we would have an external IP. But those 
 
 The most common way of exposing a service to the internet is using an `Ingress`-controller with respective rules to forward traffic to a service. This is also just feasable for cloud-clusters. For more information, check out the [Kubernetes Ingress Documentation](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 
+In order to enable the ingress controller for minikube, we have to enable the ingress addon and can connect to it on `http://127.0.0.1:80`:
+```bash
+minikube addons enable ingress
+```
+
+After that we can expose the ingress service locally:
+```bash
+minikube tunnel
+```
+
+If we want to access our services directly, we can use the `NodePort`-Service type. This type exposes the service on a port on the `Node` (the machine the cluster is running on). The `NodePort` is a port in the range of `30000-32767` and is mapped to the service port.
+
 `NodePort` type gives us the opportunity to access our service from our machine, with the help of `minikube`:
 ```bash
 minikube service frontend-service --url
